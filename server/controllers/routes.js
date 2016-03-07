@@ -7,7 +7,7 @@ module.exports = {
         get: lesspass.generate
     },
     'init': {
-        get: lesspass.isInitiated,
+        get: lesspass.isInitialized,
         post: lesspass.init
     }
 };

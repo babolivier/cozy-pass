@@ -85,7 +85,7 @@ function init (req, res) {
     })
 }
 
-function isInitiated(req, res) {
+function isInitialized(req, res) {
     loadMasterPasswordIfExists(function (masterPassword) {
         if(masterPassword) {
             res.status(200).send("true");
@@ -97,6 +97,6 @@ function isInitiated(req, res) {
 
 module.exports = {
     "init": init,
-    "isInitiated": isInitiated,
+    "isInitialized": isInitialized,
     "generate": generate
 };
