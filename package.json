@@ -27,6 +27,13 @@
     "test": "mocha tests/*.js",
     "start": "node server.js"
   },
-  "cozy-permissions": {},
+  "cozy-permissions": {
+    "user": {
+      "description": "Retrieve the Cozy's email address for password generation"
+    },
+    "Lesspass": {
+      "description": "Password storage"
+    }
+  },
   "cozy-displayName": "Template"
 }

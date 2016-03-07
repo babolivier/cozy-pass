@@ -1,10 +1,14 @@
 // See documentation on https://github.com/cozy/americano#routes
 
-var index = require('./index');
+var lesspass = require('./lesspass');
 
 module.exports = {
-  'foo': {
-    get: index.main
-  }
+    'pass/:site': {
+        get: lesspass.generate
+    },
+    'init': {
+        get: lesspass.isInitiated,
+        post: lesspass.init
+    }
 };
 
