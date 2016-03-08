@@ -3,10 +3,10 @@
 var cozydb = require('cozydb');
 
 var LessPassHandler = cozydb.getModel('Lesspass', {
-      masterPassword: {
-          default: '',
-          type: String
-      }
+    masterPassword: {
+        default: '',
+        type: String
+    }
 });
 
 module.exports = LessPassHandler;

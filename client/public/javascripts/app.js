@@ -142,14 +142,48 @@ $(function () {
 require.register("lib/router", function(exports, require, module) {
 var application = require('application');
 
-module.exports = Backbone.Router.extend({
-  routes: {
-    '': 'home'
-  },
+function dispError(error) {
+    console.log(error);
+}
 
-  home: function () {
-    $('body').html(application.homeView.render().el);
-  }
+function initiate(next) {
+    $.ajax({
+        url: "/init",
+        method: "POST",
+        success: function () {
+            next();
+        },
+        error: function () {
+            dispError("Can't initiate");
+        }
+    })
+}
+
+function checkInit(next) {
+    $.ajax({
+        url: "/init",
+        complete: function (xhr) {
+            switch (xhr.status) {
+                case 404:   initiate(next);
+                            break;
+                case 200:   next();
+                            break;
+                default:    break;
+            }
+        }
+    });
+}
+
+module.exports = Backbone.Router.extend({
+    routes: {
+        '': 'home'
+    },
+
+    home: function () {
+        checkInit(function() {
+            $('body').html(application.homeView.render().el);
+        });
+    }
 });
 
 });
@@ -178,8 +212,26 @@ var View = require('./view');
 var template = require('./templates/home');
 
 module.exports = View.extend({
-  id: 'home-view',
-  template: template
+    id: 'home-view',
+    template: template,
+
+    events: {
+        'click input[type="submit"]': 'generatePassword'
+    },
+
+    generatePassword: function () {
+        var site = $('input[type="text"]').val();
+        if(site.length) {
+            $.ajax({
+                url: "/pass/" + site,
+                success: function (data) {
+                    $("#password").html("Password for " + site + ": " + data)
+                }
+            })
+        } else {
+            $("#password").html("Please enter a site or service name")
+        }
+    }
 });
 
 });
@@ -191,7 +243,7 @@ attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow |
 var buf = [];
 with (locals || {}) {
 var interp;
-buf.push('<div id="content"><h1>Cozy template</h1><h2>Welcome</h2><ul><li><a href="http://cozy.io/">Documentation</a></li><li><a href="http://cozy.io/hack/getting-started/">Getting Started</a></li><li><a href="https://github.com/cozy">Github</a></li></ul></div>');
+buf.push('<div id="content"><h1>Password management</h1><div id="main"><input type="text" placeholder="Site or service name"/><input type="submit" value="Generate"/><div id="password"></div></div></div>');
 }
 return buf.join("");
 };

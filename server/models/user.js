@@ -3,9 +3,9 @@
 var cozydb = require('cozydb');
 
 var LessPassHandler = cozydb.getModel('User', {
-      email: {
-          type: String
-      }
+    email: {
+      type: String
+    }
 });
 
 module.exports = LessPassHandler;

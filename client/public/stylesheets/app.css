@@ -56,8 +56,6 @@ h5 {
   clear: left;
 }
 h1 {
-  font-size: 5em;
-  line-height: 1.4;
   margin-bottom: 0.5em;
 }
 h2 {
@@ -92,14 +90,7 @@ ol {
   margin-bottom: 60px;
 }
 h1 {
-  background: #91a2c0;
-  background-repeat: no-repeat;
-  background-position: 2px;
-  color: #fff;
-  width: 330px;
-  padding-left: 18px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+  text-align: center;
 }
 #props {
   position: relative;
@@ -108,6 +99,18 @@ h1 {
   padding-left: 373px;
   color: #eee;
   font-style: italic;
+}
+input[type="text"] {
+  width: 30em;
+}
+input[type="submit"] {
+  height: 35px;
+}
+#main {
+  text-align: center;
+}
+#password {
+  margin-top: 20px;
 }
 
 

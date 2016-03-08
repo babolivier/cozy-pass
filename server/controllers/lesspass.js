@@ -66,6 +66,10 @@ function generate (req, res) {
         if(masterPassword) {
             var password = lesspass.createPassword(masterPassword, entry);
             res.status(200).send(password);
+        } else {
+            createMasterPassword(function () {
+                generate(req, res);
+            });
         }
     });
 }
