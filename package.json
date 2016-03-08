@@ -1,5 +1,5 @@
 {
-  "name": "cozy-template-js",
+  "name": "cozy-pass",
   "version": "1.0.0",
   "engines": [
     "node >= 0.10.0"
@@ -17,23 +17,23 @@
     "lesspass": "1.1.1"
   },
   "devDependencies": {
-    "should": "7.1.1",
+    "cozy-fixtures": "1.0.1",
+    "jslint": "0.9.3",
     "mocha": "2.3.3",
     "request-json": "0.5.3",
-    "cozy-fixtures": "1.0.1",
-    "jslint": "0.9.3"
+    "should": "7.1.1"
   },
   "scripts": {
     "test": "mocha tests/*.js",
     "start": "node server.js"
   },
   "cozy-permissions": {
-    "user": {
+    "User": {
       "description": "Retrieve the Cozy's email address for password generation"
     },
     "Lesspass": {
       "description": "Password storage"
     }
   },
-  "cozy-displayName": "Template"
+  "cozy-displayName": "Password Management"
 }
