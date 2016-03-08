@@ -13,7 +13,7 @@ module.exports = View.extend({
         var site = $('input[type="text"]').val();
         if(site.length) {
             $.ajax({
-                url: "/pass/" + site,
+                url: "pass/" + site,
                 success: function (data) {
                     $("#password").html("Password for " + site + ": " + data)
                 }

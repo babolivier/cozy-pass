@@ -6,20 +6,21 @@ function dispError(error) {
 
 function initiate(next) {
     $.ajax({
-        url: "/init",
+        url: "init",
         method: "POST",
         success: function () {
             next();
         },
-        error: function () {
+        error: function (xhr) {
             dispError("Can't initiate");
+            console.error(xhr)
         }
     })
 }
 
 function checkInit(next) {
     $.ajax({
-        url: "/init",
+        url: "init",
         complete: function (xhr) {
             switch (xhr.status) {
                 case 404:   initiate(next);

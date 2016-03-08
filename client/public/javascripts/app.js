@@ -148,20 +148,21 @@ function dispError(error) {
 
 function initiate(next) {
     $.ajax({
-        url: "/init",
+        url: "init",
         method: "POST",
         success: function () {
             next();
         },
-        error: function () {
+        error: function (xhr) {
             dispError("Can't initiate");
+            console.error(xhr)
         }
     })
 }
 
 function checkInit(next) {
     $.ajax({
-        url: "/init",
+        url: "init",
         complete: function (xhr) {
             switch (xhr.status) {
                 case 404:   initiate(next);
@@ -223,7 +224,7 @@ module.exports = View.extend({
         var site = $('input[type="text"]').val();
         if(site.length) {
             $.ajax({
-                url: "/pass/" + site,
+                url: "pass/" + site,
                 success: function (data) {
                     $("#password").html("Password for " + site + ": " + data)
                 }
